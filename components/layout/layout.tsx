@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import { ToastContainer } from 'react-toastify'
 
 interface LayoutProps {
   children: React.ReactNode
@@ -15,6 +16,7 @@ const Layout = ({ children, title }: LayoutProps): JSX.Element => {
       </Head>
       <main className="bg-white text-black font-inter min-h-screen overflow-x-hidden">
         {children}
+        <ToastContainer />
       </main>
     </>
   )
