@@ -3,9 +3,9 @@ import Link from 'next/link'
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-100 border-t">
+    <footer className="bg-gradient-to-r from-white/50 to-white/20 backdrop-blur relative z-50 h-16 flex justify-center items-center">
       <div className="px-5 py-3 flex flex-col items-center">
-        <p className="flex flex-row items-center">
+        <p className="flex flex-row items-center text-black">
           Made with&nbsp;
           <HeartIcon className="fill-red-700 h-5" />
           &nbsp; By&nbsp;

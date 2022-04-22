@@ -10,7 +10,7 @@ const Layout = ({ children, title }: LayoutProps): JSX.Element => {
   return (
     <>
       <Head>
-        <title>{title || 'TODO | TODO'}</title>
+        <title>{title || 'App | Todo'}</title>
         <meta name="description" content="Simple TODO app to manage your day to day tasks" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
