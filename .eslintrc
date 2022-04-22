@@ -1,0 +1,25 @@
+{
+  "extends": [
+    "next",
+    "next/core-web-vitals"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "legacyDecorators": true
+    }
+  },
+  "rules": {
+    "no-eval": "error",
+    "no-unused-vars": [
+      "error",
+      { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }
+    ],
+    "no-unused-expressions": "error",
+    "semi": ["error", "never"],
+    "semi-style": ["error", "last"],
+    "@next/next/no-img-element": "off"
+  }
+}
