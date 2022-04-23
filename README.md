@@ -9,4 +9,10 @@ Next.js frontend for a simple todo application
  - yarn start - Runs the production build
 
 ---
+
+## Test commands: 
+
+- npm run e2e:headless - Run all tests
+
+---
 Navigate to [http://localhost:3000](http://localhost:3000) with your browser to see the website

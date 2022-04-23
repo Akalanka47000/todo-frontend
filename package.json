@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cypress": "cypress open",
+    "cypress:headless": "cypress run",
+    "e2e:headless": "NODE_ENV=test start-server-and-test dev http://localhost:3000 cypress:headless"
   },
   "dependencies": {
     "@heroicons/react": "^1.0.6",
@@ -19,13 +22,15 @@
     "react-lottie": "^1.2.3",
     "react-scroll": "^1.8.7",
     "react-swipe-to-delete-component": "^1.0.7",
-    "react-toastify": "^8.2.0"
+    "react-toastify": "^8.2.0",
+    "start-server-and-test": "^1.14.0"
   },
   "devDependencies": {
     "@types/node": "17.0.25",
     "@types/react": "18.0.6",
     "@types/react-dom": "18.0.2",
     "autoprefixer": "^10.4.4",
+    "cypress": "^9.5.4",
     "eslint": "8.13.0",
     "eslint-config-next": "12.1.5",
     "postcss": "^8.4.12",

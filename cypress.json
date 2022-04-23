@@ -1,0 +1,8 @@
+{
+  "baseUrl": "http://localhost:3000",
+  "env": {
+    "server_url": "http://localhost:4000/api/v1"
+  },
+  "trashAssetsBeforeRuns": true,
+  "videoRecording": false
+}
