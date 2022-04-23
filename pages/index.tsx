@@ -65,7 +65,7 @@ const Home: NextPage = () => {
       <img
         src="/images/home/bg.jpg"
         alt="Logo"
-        className="h-screen w-screen object-cover fixed top-0 filter brightness-90"
+        className="h-screen w-screen object-cover fixed top-0 filter brightness-85"
       />
       <Container className="pt-1">
         <div className="flex items-center justify-between bg-white/70 backdrop-blur-[2px] mt-8 mb-8 p-3 px-8 rounded-md transform hover:scale-x-101 transition duration-300">

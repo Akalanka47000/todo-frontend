@@ -36,6 +36,9 @@ module.exports = {
         ds1: '10px 4px 20px rgba(0, 0, 0, 0.25)',
         ds2: '0px 0px 20px rgba(155, 155, 155, 0.2)',
       },
+      brightness: {
+        85: '.85',
+      }
     },
   },
   variants: {
