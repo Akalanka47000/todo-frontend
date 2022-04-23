@@ -17,6 +17,18 @@ const Home: NextPage = () => {
   const router = useRouter()
 
   useEffect(() => {
+    const fetchStatusList = async () => {
+      try {
+        const res = await getStatusList()
+        if (res.status === 200) {
+          localStorage.setItem('statuses', JSON.stringify(res.data.data))
+          setStatusList(res.data.data)
+          fetchTaskList()
+        } else toast.error('Failed to fetch statuses')
+      } catch (error: any) {
+        toast.convertAndNotifyError(error)
+      }
+    }
     if (typeof window !== 'undefined') {
       // Redirect to login page if user is not logged in
       if (!localStorage.getItem('rememberMe') && !sessionStorage.getItem('loggedIn')) {
@@ -26,26 +38,13 @@ const Home: NextPage = () => {
       } else {
         // Fetch and cache status list
         const cachedStatuses = localStorage.getItem('statuses')
-        if (cachedStatuses) setStatusList(JSON.parse(cachedStatuses))
-        else fetchStatusList()
-        fetchTaskList()
+        if (cachedStatuses) {
+          setStatusList(JSON.parse(cachedStatuses))
+          fetchTaskList()
+        } else fetchStatusList()
       }
     }
   }, [router])
-
-  const fetchStatusList = async () => {
-    setLoading(true)
-    try {
-      const res = await getStatusList()
-      if (res.status === 200) {
-        localStorage.setItem('statuses', JSON.stringify(res.data.data))
-        setStatusList(res.data.data)
-      } else toast.error('Failed to fetch statuses')
-    } catch (error: any) {
-      toast.convertAndNotifyError(error)
-    }
-    setLoading(false)
-  }
 
   const fetchTaskList = async () => {
     setLoading(true)
