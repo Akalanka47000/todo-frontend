@@ -104,7 +104,7 @@ const TaskCard = ({ title, tasks, statuses, refresh }: TaskCardProps): JSX.Eleme
                   <div className="h-10 w-10 invert -rotate-90">
                     <NextLottie animationData={arrowAnimation} />
                   </div>
-                  <span className="ml-2 font-semidbold hidden md:flex">Swipe to delete</span>
+                  <span className="swipe-info-text ml-2 font-semidbold hidden md:flex">Swipe to delete</span>
                 </div>
               </SwipeToDelete>
               <div className="w-full absolute flex justify-center items-center">
