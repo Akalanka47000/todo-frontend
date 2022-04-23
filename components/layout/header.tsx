@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { Button } from '../common'
 import toast from '../../libs/toastify'
@@ -6,16 +5,6 @@ import { logout } from '../../infrastructure/services/auth.service'
 
 const Header = () => {
   const router = useRouter()
-
-  // Redirect to login page if user is not logged in
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      if (!localStorage.getItem('rememberMe') && !sessionStorage.getItem('loggedIn'))
-        router.push({
-          pathname: '/login',
-        })
-    }
-  }, [router])
 
   const logoutUser = async () => {
     try {

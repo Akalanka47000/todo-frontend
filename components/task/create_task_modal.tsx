@@ -4,7 +4,11 @@ import { InformationCircleIcon } from '@heroicons/react/solid'
 import { createTask } from '../../infrastructure/services/task.service'
 import { Input, Button } from '../common'
 
-const CreateTaskModal = (): JSX.Element => {
+interface CreateTaskModalProps {
+  refresh: Function
+}
+
+const CreateTaskModal = ({ refresh }: CreateTaskModalProps): JSX.Element => {
   const [formData, setFormData] = useState({
     name: '',
   })
@@ -27,6 +31,7 @@ const CreateTaskModal = (): JSX.Element => {
           form.reset()
           const modalCheckbox = document.getElementById('create_task_modal') as HTMLInputElement
           modalCheckbox.checked = !modalCheckbox.checked
+          refresh()
         }
       } else toast.error('Failed to create task')
     } catch (error: any) {

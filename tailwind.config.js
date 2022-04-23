@@ -16,7 +16,18 @@ module.exports = {
         },
       },
       width: {},
-      minHeight: {},
+      inset: {
+        30: '7.5rem',
+      },
+      padding:  {
+        0.8: '0.2rem'
+      },
+      minHeight: {
+        '20vh': '20vh',
+        '70vh': '70vh',
+        '80vh': '80vh',
+        '90vh': '90vh',
+      },
       scale: {
         101: '1.01',
         102: '1.02',
@@ -39,21 +50,13 @@ module.exports = {
       {
         mytheme: {
           primary: '#2462c3',
-
           secondary: '#F000B8',
-
           accent: '#37CDBE',
-
           neutral: '#3D4451',
-
           'base-100': '#FFFFFF',
-
           info: '#3ABFF8',
-
           success: '#36D399',
-
           warning: '#FBBD23',
-
           error: '#F87272',
         },
       },

@@ -1,25 +1,40 @@
 import type { NextPage } from 'next'
+import { useRouter } from 'next/router'
 import { useState, useEffect } from 'react'
 import { Layout, Header, Footer, Container } from '../components/layout'
-import CreateTaskModal from '../components/task/create_task_modal'
+import { CreateTaskModal, TaskCard, StatusInfo } from '../components/task'
 import { PlusIcon } from '@heroicons/react/solid'
 import toast from '../libs/toastify'
+import { getTaskList } from '../infrastructure/services/task.service'
 import { getStatusList } from '../infrastructure/services/status.service'
-import { Status } from '../infrastructure/models'
+import { Task, Status } from '../infrastructure/models'
 
 const Home: NextPage = () => {
   const [statusList, setStatusList] = useState<Status[]>([])
+  const [taskList, setTaskList] = useState<Task[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
 
-  // Fetch and cache status list
+  const router = useRouter()
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const cachedStatuses = localStorage.getItem('statuses')
-      if (cachedStatuses) setStatusList(JSON.parse(cachedStatuses))
-      else fetchStatusList()
+      // Redirect to login page if user is not logged in
+      if (!localStorage.getItem('rememberMe') && !sessionStorage.getItem('loggedIn')) {
+        router.push({
+          pathname: '/login',
+        })
+      } else {
+        // Fetch and cache status list
+        const cachedStatuses = localStorage.getItem('statuses')
+        if (cachedStatuses) setStatusList(JSON.parse(cachedStatuses))
+        else fetchStatusList()
+        fetchTaskList()
+      }
     }
-  }, [])
+  }, [router])
 
   const fetchStatusList = async () => {
+    setLoading(true)
     try {
       const res = await getStatusList()
       if (res.status === 200) {
@@ -29,6 +44,20 @@ const Home: NextPage = () => {
     } catch (error: any) {
       toast.convertAndNotifyError(error)
     }
+    setLoading(false)
+  }
+
+  const fetchTaskList = async () => {
+    setLoading(true)
+    try {
+      const res = await getTaskList()
+      if (res.status === 200) {
+        setTaskList(res.data.data)
+      } else toast.error('Failed to fetch tasks')
+    } catch (error: any) {
+      toast.convertAndNotifyError(error)
+    }
+    setLoading(false)
   }
 
   return (
@@ -50,7 +79,25 @@ const Home: NextPage = () => {
             <PlusIcon className="h-8 w-8" />
           </label>
         </div>
-        <CreateTaskModal />
+        <CreateTaskModal refresh={fetchTaskList} />
+        {loading ? (
+          <div className="w-full flex flex-col justify-center items-center min-h-70vh rounded-md bg-white/60 backdrop-blur-[2px]">
+            <progress className="progress progress-primary w-10/12 md:w-8/12 lg:w-4/12"></progress>
+            <span className="mt-4 font-semibold text-center">
+              Fetching tasks, this wont take long
+            </span>
+          </div>
+        ) : (
+          <div>
+            <StatusInfo statuses={statusList} />
+            <TaskCard
+              title="All tasks"
+              tasks={taskList}
+              statuses={statusList}
+              refresh={fetchTaskList}
+            />
+          </div>
+        )}
       </Container>
       <Footer />
     </Layout>

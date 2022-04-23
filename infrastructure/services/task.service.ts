@@ -10,5 +10,9 @@ export const createTask = (task: Task) => {
 }
 
 export const updateTask = (id: number, task: Task) => {
-  return axiosIns.put('/task/${id}', task)
+  return axiosIns.put(`/task/${id}`, task)
+}
+
+export const deleteTask = (id: number) => {
+  return axiosIns.delete(`/task/${id}`)
 }
