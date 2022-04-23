@@ -69,7 +69,7 @@ const Home: NextPage = () => {
         className="h-screen w-screen object-cover fixed top-0 filter brightness-90"
       />
       <Container className="pt-1">
-        <div className="flex items-center justify-between bg-white/90 mt-8 mb-8 p-3 px-8 rounded-md transform hover:scale-x-101 transition duration-300">
+        <div className="flex items-center justify-between bg-white/70 backdrop-blur-[2px] mt-8 mb-8 p-3 px-8 rounded-md transform hover:scale-x-101 transition duration-300">
           <span className="text-3xl font-semibold text-gray-800 cursor-default">My Tasks</span>
           <label
             className="tooltip tooltip-primary modal-button flex justify-center items-center h-10 w-14 rounded text-white bg-primary-base cursor-pointer hover:bg-primary-hovertransition duration-300"
